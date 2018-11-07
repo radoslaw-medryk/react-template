@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import "@babel/polyfill";
+import "normalize.css";
 import { ReactApp } from "./components/ReactApp";
 
 ReactDOM.render(
