@@ -2,7 +2,7 @@
   "name": "@radoslaw-medryk/react-template",
   "private": true,
   "scripts": {
-    "build": "wp --mode production",
+    "build": "tsc && wp --mode production",
     "start": "webpack-serve --open"
   },
   "dependencies": {
