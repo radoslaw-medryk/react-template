@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const StylelintWebpackPlugin = require("stylelint-webpack-plugin");
 
 module.exports = env => {
     const isProduction = env.mode === "production";
@@ -35,10 +36,18 @@ module.exports = env => {
                 },
                 {
                     test: /\.tsx?$/,
-                    loader: "babel-loader"
+                    use: [
+                        "babel-loader",
+                        {
+                            loader: "linaria/loader",
+                            options: {
+                                sourceMap: !isProduction
+                            }
+                        }
+                    ]
                 },
                 {
-                    test: /\.s?css$/,
+                    test: /\.css$/,
                     use: [
                         isProduction
                             ? MiniCssExtractPlugin.loader
@@ -46,13 +55,9 @@ module.exports = env => {
                         {
                             loader: "css-loader",
                             options: {
-                                modules: true,
-                                localIdentName: "[name]-[local]-[hash:6]",
                                 importLoaders: 1,
-                                camelCase: true
                             }
-                        },
-                        "sass-loader"
+                        }
                     ]
                 }
             ]
@@ -68,7 +73,11 @@ module.exports = env => {
             new MiniCssExtractPlugin(),
             new HtmlWebpackPlugin({
                 template: "src/index.html"
-            })
+            }),
+            new StylelintWebpackPlugin({
+                context: 'src',
+                files: '**/*.tsx',
+              })
         ]
     };
 };

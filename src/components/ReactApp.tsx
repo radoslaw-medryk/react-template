@@ -6,5 +6,5 @@ export type ReactAppProps = {
 };
 
 export const ReactApp: React.SFC<ReactAppProps> = props => (
-    <Hello name="World"/>
+    <Hello />
 );

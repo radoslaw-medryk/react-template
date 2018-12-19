@@ -6,6 +6,9 @@
             "targets": "> 0.5%, last 2 versions, Firefox ESR, not dead"
         }],
         "@babel/react",
+        ["linaria/babel", {
+            "displayName": true
+        }],
         "@babel/typescript"
     ],
     "plugins": [

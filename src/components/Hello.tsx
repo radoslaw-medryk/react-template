@@ -1,11 +1,20 @@
 import * as React from "react";
+import { styled } from "linaria/react";
+import { Rotor } from "./Rotor";
 
-const styles = require("./Hello.scss");
+const HelloRotor = styled(Rotor)`
+    background: papayawhip;
+    height: 100vh;
+`;
 
-export type HelloProps = {
-    name: string;
+const HelloText = styled.h1`
+    color: tomato;
+`;
+
+export const Hello = () => {
+    return (
+        <HelloRotor cycleTimeSec={2}>
+            <HelloText>Hello!</HelloText>
+        </HelloRotor>
+    );
 };
-
-export const Hello: React.SFC<HelloProps> = ({name}) => (
-    <h1 className={styles.header}>Hello, {name}!</h1>
-);
