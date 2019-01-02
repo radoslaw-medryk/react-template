@@ -2,7 +2,10 @@
     "compileOnSave": true,
     "compilerOptions": {
         "noEmit": true,
-        "baseUrl": "src/",
+        "baseUrl": ".",
+        "paths": {
+            "src": ["src"]
+        },
         "jsx": "react",
         "moduleResolution": "node",
         "lib": [
