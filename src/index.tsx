@@ -4,7 +4,4 @@ import "@babel/polyfill";
 import "normalize.css";
 import { ReactApp } from "./components/ReactApp";
 
-ReactDOM.render(
-    <ReactApp/>,
-    document.getElementById("react-app")
-);
+ReactDOM.render(<ReactApp />, document.getElementById("react-app"));

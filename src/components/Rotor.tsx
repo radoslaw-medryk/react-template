@@ -16,7 +16,11 @@ export const Rotor = styled.div<RotorProps>`
     }
 
     @keyframes rotate {
-        from { transform: rotate(0deg) }
-        to { transform: rotate(360deg) }
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
     }
 `;
