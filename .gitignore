@@ -2,4 +2,3 @@ node_modules/
 build/
 dist/
 .linaria-cache/
-.vscode/

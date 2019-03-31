@@ -2,10 +2,11 @@
     "name": "@radoslaw-medryk/react-template",
     "private": true,
     "scripts": {
-        "build": "tsc && wp --mode production",
-        "start": "webpack-serve --open",
+        "build": "npm run prettier-check && tsc && wp --mode production",
+        "start": "webpack-serve",
         "lint:css": "stylelint src/**/*.tsx",
-        "prettier": "prettier ./src/**/*.{js,ts,tsx,json,html} --write"
+        "prettier": "prettier ./src/**/*.{js,ts,tsx,json,html} --write",
+        "prettier-check": "prettier ./src/**/*.{js,ts,tsx,json,html} --check"
     },
     "dependencies": {
         "@babel/core": "^7.1.2",
