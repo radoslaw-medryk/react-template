@@ -2,24 +2,22 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const StylelintWebpackPlugin = require("stylelint-webpack-plugin");
 
-module.exports = env => {
-    const isProduction = env.mode === "production";
-    env.mode = isProduction
-        ? "production"
-        : "development";
+module.exports = (env, argv) => {
+    const isProduction = !!argv && argv.mode === "production";
 
     return {
-        mode: env.mode,
+        mode: isProduction ? "production" : "development",
         entry: "./src/index.tsx",
         output: {
             filename: "[name].js",
-            path: __dirname + "/dist"
+            path: __dirname + "/dist",
+            publicPath: "/",
         },
 
         devtool: "source-map",
 
         resolve: {
-            extensions: [".ts", ".tsx", ".js", ".json"]
+            extensions: [".ts", ".tsx", ".js", ".json"],
         },
 
         module: {
@@ -30,9 +28,9 @@ module.exports = env => {
                     use: {
                         loader: "tslint-loader",
                         options: {
-                            emitErrors: true
-                        }
-                    }
+                            emitErrors: true,
+                        },
+                    },
                 },
                 {
                     test: /\.tsx?$/,
@@ -41,43 +39,49 @@ module.exports = env => {
                         {
                             loader: "linaria/loader",
                             options: {
-                                sourceMap: !isProduction
-                            }
-                        }
-                    ]
+                                sourceMap: !isProduction,
+                            },
+                        },
+                    ],
                 },
                 {
                     test: /\.css$/,
                     use: [
-                        isProduction
-                            ? MiniCssExtractPlugin.loader
-                            : "style-loader",
+                        isProduction ? MiniCssExtractPlugin.loader : "style-loader",
                         {
                             loader: "css-loader",
                             options: {
                                 importLoaders: 1,
-                            }
-                        }
-                    ]
-                }
-            ]
+                            },
+                        },
+                    ],
+                },
+                {
+                    test: /\.woff2?$/,
+                    use: "file-loader",
+                },
+            ],
         },
 
         optimization: {
             splitChunks: {
-                chunks: "all"
-            }
+                chunks: "all",
+            },
+        },
+
+        devServer: {
+            historyApiFallback: true,
         },
 
         plugins: [
             new MiniCssExtractPlugin(),
             new HtmlWebpackPlugin({
-                template: "src/index.html"
+                template: "src/index.html",
             }),
             new StylelintWebpackPlugin({
-                context: 'src',
-                files: '**/*.tsx',
-              })
-        ]
+                context: "src",
+                files: "**/*.tsx",
+            }),
+        ],
     };
 };

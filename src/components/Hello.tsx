@@ -11,10 +11,14 @@ const HelloText = styled.h1`
     color: tomato;
 `;
 
-export const Hello = () => {
+export type HelloProps = {
+    name: string;
+};
+
+export const Hello: React.SFC<HelloProps> = ({ name }) => {
     return (
         <HelloRotor cycleTimeSec={2}>
-            <HelloText>Hello!</HelloText>
+            <HelloText>Hello {name}!</HelloText>
         </HelloRotor>
     );
 };
