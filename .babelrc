@@ -1,23 +1,33 @@
 {
     "presets": [
-        ["@babel/env", {
-            "modules": false,
-            "useBuiltIns": "entry",
-            "targets": "> 0.5%, last 2 versions, Firefox ESR, not dead"
-        }],
+        [
+            "@babel/env",
+            {
+                "modules": false,
+                "useBuiltIns": "entry",
+                "corejs": "2.6.5",
+                "targets": "> 0.5%, last 2 versions, Firefox ESR, not dead"
+            }
+        ],
         "@babel/react",
-        ["linaria/babel", {
-            "displayName": true
-        }],
+        [
+            "linaria/babel",
+            {
+                "displayName": true
+            }
+        ],
         "@babel/typescript"
     ],
     "plugins": [
-        ["module-resolver", {
-            "root": ".",
-            "alias": {
-                "src": "./src"
+        [
+            "module-resolver",
+            {
+                "root": ".",
+                "alias": {
+                    "src": "./src"
+                }
             }
-        }],
+        ],
         "@babel/proposal-class-properties"
     ]
 }

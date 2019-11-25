@@ -4,7 +4,7 @@ export type Config = {
     hello: string;
 };
 
-const defaultConfig: Config = require("../configs/dev-config.json");
+const defaultConfig: Config = require("@/configs/dev-config.json");
 
 export const configPromise = axios
     .get("/config.json")
